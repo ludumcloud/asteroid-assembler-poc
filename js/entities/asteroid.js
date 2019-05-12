@@ -1,7 +1,7 @@
 /**
- * Player Entity
+ * Asteroid rock entity
  */
-game.PlayerEntity = me.Entity.extend({
+game.AsteroidEntity = me.Entity.extend({
 
     /**
      * constructor
@@ -19,6 +19,7 @@ game.PlayerEntity = me.Entity.extend({
      * update the entity
      */
     update : function (dt) {
+        this.body.vel.x = -10;
 
         // apply physics to the body (this moves the entity)
         this.body.update(dt);

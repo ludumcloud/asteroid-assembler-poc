@@ -10,6 +10,8 @@ game.PlayScreen = me.ScreenObject.extend({
         // Can also be forced by specifying a "Infinity" z value to the addChild function.
         this.HUD = new game.HUD.Container();
         me.game.world.addChild(this.HUD);
+        me.game.world.addChild(me.pool.pull("mainPlayer", 10, 50));
+        me.game.world.addChild(me.pool.pull("asteroid", 400, 400));
     },
 
     /**

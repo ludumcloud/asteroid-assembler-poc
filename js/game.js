@@ -32,8 +32,10 @@ var game = {
 
         // add our player entity in the entity pool
         me.pool.register("mainPlayer", game.PlayerEntity);
+        me.pool.register("asteroid", game.AsteroidEntity);
 
         // Start the game.
+        me.sys.gravity = 0;
         me.state.change(me.state.PLAY);
     }
 };
