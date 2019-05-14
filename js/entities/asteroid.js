@@ -20,6 +20,14 @@ game.AsteroidEntity = me.Entity.extend({
      */
     update : function (dt) {
         this.body.vel.x = -10;
+        this.body.vel.y = 0;
+
+        if (me.input.isKeyPressed("up")) {
+            this.body.vel.y += 5;
+        }
+        if (me.input.isKeyPressed("down")) {
+            this.body.vel.y -= 5;
+        }
 
         // apply physics to the body (this moves the entity)
         this.body.update(dt);

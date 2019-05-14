@@ -6,12 +6,18 @@ game.PlayScreen = me.ScreenObject.extend({
         // reset the score
         game.data.score = 0;
 
+        me.game.world.addChild(new me.ColorLayer("background", "#000000"), 0);
+        me.game.world.addChild(me.pool.pull("mainPlayer", 50, me.game.viewport.height / 2), 1);
+        me.game.world.addChild(me.pool.pull("asteroid",  me.game.viewport.width - 50, 300), 2);
         // Add our HUD to the game world, add it last so that this is on top of the rest.
         // Can also be forced by specifying a "Infinity" z value to the addChild function.
         this.HUD = new game.HUD.Container();
-        me.game.world.addChild(this.HUD);
-        me.game.world.addChild(me.pool.pull("mainPlayer", 10, 50));
-        me.game.world.addChild(me.pool.pull("asteroid", 400, 400));
+        me.game.world.addChild(this.HUD, 10);
+
+        me.input.bindKey(me.input.KEY.UP, "up");
+        me.input.bindKey(me.input.KEY.DOWN, "down");
+        me.input.bindKey(me.input.KEY.W, "up");
+        me.input.bindKey(me.input.KEY.S, "down");
     },
 
     /**
@@ -20,5 +26,10 @@ game.PlayScreen = me.ScreenObject.extend({
     onDestroyEvent: function() {
         // remove the HUD from the game world
         me.game.world.removeChild(this.HUD);
+
+        me.input.unbindKey(me.input.KEY.UP);
+        me.input.unbindKey(me.input.KEY.DOWN);
+        me.input.unbindKey(me.input.KEY.W);
+        me.input.unbindKey(me.input.KEY.S);
     }
 });
