@@ -13,20 +13,21 @@ game.AsteroidEntity = me.Entity.extend({
             height : 32,
             width : 32
         }]);
+        this.body.collisionType = me.collision.types.ENEMY_OBJECT;
     },
 
     /**
      * update the entity
      */
     update : function (dt) {
-        this.body.vel.x = -10;
+        this.body.vel.x = -4;
         this.body.vel.y = 0;
 
         if (me.input.isKeyPressed("up")) {
-            this.body.vel.y += 5;
+            this.body.vel.y += 2;
         }
         if (me.input.isKeyPressed("down")) {
-            this.body.vel.y -= 5;
+            this.body.vel.y -= 2;
         }
 
         // apply physics to the body (this moves the entity)
@@ -44,7 +45,11 @@ game.AsteroidEntity = me.Entity.extend({
      * (called when colliding with other objects)
      */
     onCollision : function (response, other) {
+        if (other.body.collisionType === me.collision.types.PLAYER_OBJECT) {
+            me.game.world.removeChild(this);
+            me.game.world.removeChild(other);
+        }
         // Make all other objects solid
-        return true;
+        return false;
     }
 });

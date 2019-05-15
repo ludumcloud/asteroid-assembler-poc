@@ -13,6 +13,7 @@ game.PlayerEntity = me.Entity.extend({
             height : 32,
             width : 32
         }]);
+        this.body.collisionType = me.collision.types.PLAYER_OBJECT;
     },
 
     /**
@@ -21,10 +22,7 @@ game.PlayerEntity = me.Entity.extend({
     update : function (dt) {
 
         // apply physics to the body (this moves the entity)
-        this.body.update(dt);
-
-        // handle collisions against other shapes
-        me.collision.check(this);
+        // this.body.update(dt);
 
         // return true if we moved or if the renderable was updated
         return (this._super(me.Entity, 'update', [dt]) || this.body.vel.x !== 0 || this.body.vel.y !== 0);
@@ -36,6 +34,6 @@ game.PlayerEntity = me.Entity.extend({
      */
     onCollision : function (response, other) {
         // Make all other objects solid
-        return true;
+        return false;
     }
 });
