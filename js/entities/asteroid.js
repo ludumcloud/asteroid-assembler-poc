@@ -47,7 +47,7 @@ game.AsteroidEntity = me.Entity.extend({
     onCollision : function (response, other) {
         if (other.body.collisionType === me.collision.types.PLAYER_OBJECT) {
             me.game.world.removeChild(this);
-            me.game.world.removeChild(other);
+            game.playScreen.playerShip.removeChild(other);
         }
         // Make all other objects solid
         return false;
