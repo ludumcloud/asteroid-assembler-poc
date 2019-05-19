@@ -3,8 +3,8 @@ game.ShipContainer = me.Container.extend({
   init : function () {
       this.parts = [];
       this.startx = 50;
-      this.starty = me.game.viewport.getHeight() / 4;
-      this._super(me.Container, "init", [this.startx, this.starty]);
+      this.starty = me.game.viewport.getHeight() / 2;
+      this._super(me.Container, "init", []);
   },
 
   resetShip : function() {
@@ -17,7 +17,6 @@ game.ShipContainer = me.Container.extend({
 
   addPart : function(x, y) {
       let realy = this.indexConversion(y);
-      console.log("adding part at " + [this.startx + (34*x), this.starty + (34*y)]);
       let tempPart = me.pool.pull("mainPlayer", this.startx + (34*x), this.starty + (34*y));
       if (!this.parts[realy]) {
           this.parts[realy] = [];
