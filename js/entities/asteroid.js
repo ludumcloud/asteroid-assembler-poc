@@ -14,12 +14,17 @@ game.AsteroidEntity = me.Entity.extend({
             width : 32
         }]);
         this.body.collisionType = me.collision.types.ENEMY_OBJECT;
+        this.alwaysUpdate = true;
     },
 
     /**
      * update the entity
      */
     update : function (dt) {
+        if (this.pos.x + this.width <= 0) {
+            me.game.world.removeChild(this);
+        }
+
         this.body.vel.x = -4;
         this.body.vel.y = 0;
 

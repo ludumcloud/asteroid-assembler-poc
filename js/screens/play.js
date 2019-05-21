@@ -12,7 +12,7 @@ game.PlayScreen = me.ScreenObject.extend({
         this.playerShip = new game.ShipContainer();
         this.playerShip.resetShip();
         me.game.world.addChild(this.playerShip, 1);
-        me.game.world.addChild(me.pool.pull("asteroid",  me.game.viewport.getWidth() - 50, 300), 2);
+        me.game.world.addChild(new game.AsteroidSpawner());
         // Add our HUD to the game world, add it last so that this is on top of the rest.
         // Can also be forced by specifying a "Infinity" z value to the addChild function.
         this.HUD = new game.HUD.Container();
