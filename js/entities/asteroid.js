@@ -27,12 +27,15 @@ game.AsteroidEntity = me.Entity.extend({
 
         this.body.vel.x = -4;
         this.body.vel.y = 0;
+        game.playScreen.spaceDuster.gravity = 0;
 
         if (me.input.isKeyPressed("up")) {
             this.body.vel.y += 2;
+            game.playScreen.spaceDuster.gravity += 0.05;
         }
         if (me.input.isKeyPressed("down")) {
             this.body.vel.y -= 2;
+            game.playScreen.spaceDuster.gravity -= 0.05;
         }
 
         // apply physics to the body (this moves the entity)
